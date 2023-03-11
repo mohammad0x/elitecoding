@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .views import *
+from .models import *
 from django.contrib.auth import authenticate, login, logout
 
 
