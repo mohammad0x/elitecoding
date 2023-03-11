@@ -4,16 +4,17 @@ from .models import *
 
 class UserCreateForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
+    password_Confirmation = forms.CharField(widget=forms.PasswordInput)
 
     class Meta:
         model = MyUser
-        fields = ['username', 'email']
+        fields = ['email', 'username']
 
     def clean_password2(self):
         data = self.cleaned_data
-        if data['password']:
+        if data['password_Confirmation'] and data['password'] and data['password_Confirmation'] != data['password']:
             raise forms.ValidationError('Passwords are not the same')
-        return data['password']
+        return data['password_Confirmation']
 
     def save(self, commit=True):
         user = super().save(commit=False)
