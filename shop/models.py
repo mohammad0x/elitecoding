@@ -6,6 +6,7 @@ from django.db import models
 from django.contrib.auth.models import (
     BaseUserManager, AbstractBaseUser
 )
+from django.db.models.signals import post_save
 
 
 class MyUserManager(BaseUserManager):
@@ -89,3 +90,5 @@ def save_profile_user(sender, **kwargs):
         profile_user = Profile(user=kwargs['instance'])
         profile_user.save()
 
+
+post_save.connect(save_profile_user, sender=MyUser)
