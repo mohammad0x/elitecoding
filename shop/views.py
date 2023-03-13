@@ -54,7 +54,7 @@ def ProfileUpdate(request):
             profile_form.save()
             user_form.save()
             messages.success(request, 'Update Successfully', 'success')
-            return redirect('hair_style:profile')
+            return redirect('shop:profile')
 
     else:
         user_form = UserUpdateForm(instance=request.user)
