@@ -25,9 +25,9 @@ def Login(request):
                 "username": username,
                 "errormessage": "User not found"
             }
-            return render(request, "shop/login/login.html", context)
+            return render(request, "shop/Login/login.html", context)
     else:
-        return render(request, 'shop/login/login.html', {})
+        return render(request, 'shop/Login/login.html', {})
 
 
 def Register(request):
