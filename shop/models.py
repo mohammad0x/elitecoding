@@ -77,7 +77,7 @@ class MyUser(AbstractBaseUser):
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(MyUser, on_delete=models.CASCADE)
+    user = models.OneToOneField(MyUser, on_delete=models.CASCADE , related_name='Profile')
     first_name = models.CharField(max_length=80)
     last_name = models.CharField(max_length=80)
     phone = models.CharField(max_length=11)
