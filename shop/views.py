@@ -51,6 +51,14 @@ def Logout_view(request):
     return redirect('shop:login')
 
 
+def profile_view(request):
+    profile = Profile.objects.filter(user_id=request.user.id)
+    context = {
+        'profile': profile
+    }
+    return render(request, 'shop/profile/Profile.html',context)
+
+
 def ProfileUpdate(request):
     if request.method == 'POST':
         user_form = UserUpdateForm(request.POST, instance=request.user)

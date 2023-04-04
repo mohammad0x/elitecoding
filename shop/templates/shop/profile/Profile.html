@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {% for profiles in profile %}
+        <p>{{ profiles.first_name }}</p>
+        <p>{{ profiles.last_name }}</p>
+        <p>{{ profiles.phone }}</p>
+        <p><img src="{{ profiles.image.url }}" alt="" style="width: 250px ; height: 250px"></p>
+    {% endfor %}
+</body>
+</html>
