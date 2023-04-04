@@ -92,6 +92,6 @@ class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
     subject_template_name = 'shop/passwordReset/password_reset_subjects'
     success_message = "اگر ثبت نام نکرده اید لطفا ثبت نام کنبد"
 
-    success_url = reverse_lazy('hair_style:register')
+    success_url = reverse_lazy('shop:register')
 
 
