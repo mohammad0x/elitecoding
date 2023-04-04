@@ -3,16 +3,19 @@ from .models import *
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .forms import *
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
 
-
+@login_required(login_url='/login/')
 def Home(request):
     return render(request, 'shop/Home/home.html')
 
 
 def Login(request):
+    if request.user.is_authenticated:
+        return redirect('shop:home')
     if request.method == 'POST':
         username = request.POST.get('email')
         password = request.POST.get('password')
@@ -31,6 +34,8 @@ def Login(request):
 
 
 def Register(request):
+    if request.user.is_authenticated:
+        return redirect('blog:profile')
     if request.method == 'POST':
         form = UserCreateForm(request.POST)
         if form.is_valid():
@@ -51,14 +56,16 @@ def Logout_view(request):
     return redirect('shop:login')
 
 
+@login_required(login_url='/login/')
 def profile_view(request):
     profile = Profile.objects.filter(user_id=request.user.id)
     context = {
         'profile': profile
     }
-    return render(request, 'shop/profile/Profile.html',context)
+    return render(request, 'shop/profile/Profile.html', context)
 
 
+@login_required(login_url='/login/')
 def ProfileUpdate(request):
     if request.method == 'POST':
         user_form = UserUpdateForm(request.POST, instance=request.user)
