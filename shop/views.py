@@ -59,7 +59,7 @@ def ProfileUpdate(request):
             profile_form.save()
             user_form.save()
             messages.success(request, 'Update Successfully', 'success')
-            return redirect('shop:profile')
+            return redirect('shop:home')
 
     else:
         user_form = UserUpdateForm(instance=request.user)
