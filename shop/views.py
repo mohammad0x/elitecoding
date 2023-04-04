@@ -4,6 +4,9 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .forms import *
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import PasswordResetView
+from django.contrib.messages.views import SuccessMessageMixin
+from django.urls import reverse ,reverse_lazy
 
 
 # Create your views here.
@@ -81,3 +84,14 @@ def ProfileUpdate(request):
         profile_form = ProfileUpdateForm(instance=request.user.profiles)
     context = {'profile_form': profile_form, 'user_form': user_form}
     return render(request, 'shop/profile/UpdateProfile.html', context)
+
+
+class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
+    template_name = 'shop/passwordReset/password_reset.html'
+    email_template_name = 'shop/passwordReset/password_reset_email.html'
+    subject_template_name = 'shop/passwordReset/password_reset_subjects'
+    success_message = "اگر ثبت نام نکرده اید لطفا ثبت نام کنبد"
+
+    success_url = reverse_lazy('hair_style:register')
+
+
