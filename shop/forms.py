@@ -27,10 +27,22 @@ class UserCreateForm(forms.ModelForm):
 class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['first_name', 'last_name', 'phone', 'image']
+        fields = ['first_name', 'last_name','phone', 'image']
 
 
 class UserUpdateForm(forms.ModelForm):
     class Meta:
         model = MyUser
         fields = ['email', 'username']
+
+
+class LoginPhoneForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['phone']
+
+
+class CodePhoneForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['verify_code']

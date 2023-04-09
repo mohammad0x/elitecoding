@@ -10,6 +10,8 @@ urlpatterns = [
     path('profile/' , ProfileUpdate , name="profileUpdate"),
     path('profileView/' , profile_view , name="profile_view"),
     path('logout/' , Logout_view , name="logout"),
+    path('login_phone/' , login_phone , name="login_phone"),
+    path('verify_login_phone/' , verify_login_phone , name="verify_login_phone"),
     # Forget password
     path('password-reset/', ResetPasswordView.as_view(success_url=reverse_lazy('shop:password_reset_done')),
          name='password_reset'),

@@ -6,7 +6,9 @@ from .forms import *
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import PasswordResetView
 from django.contrib.messages.views import SuccessMessageMixin
-from django.urls import reverse ,reverse_lazy
+from django.urls import reverse, reverse_lazy
+from kavenegar import *
+import random
 
 
 # Create your views here.
@@ -95,3 +97,44 @@ class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
     success_url = reverse_lazy('shop:register')
 
 
+def login_phone(request):
+    if request.method == 'POST':
+        form = LoginPhoneForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            global phone, random_code
+            phone = f"{data['phone']}"
+            random_code = random.randint(1000, 9999)
+            sms = KavenegarAPI(
+                "********")
+            params = {
+                'sender': '******',  # Array of String
+                'receptor': '*****',  # Array of String
+                'message': f' {random_code} سلام این اولین تست است ',
+            }
+            response = sms.sms_send(params)
+            return redirect('shop:verify_login_phone')
+    else:
+        form = LoginPhoneForm()
+    context = {
+        'form': form,
+    }
+    return render(request, 'shop/phone/login-phone.html', context)
+
+
+def verify_login_phone(request):
+    if request.method == 'POST':
+        form = CodePhoneForm(request.POST)
+        if form.is_valid():
+            if str(random_code) == form.cleaned_data['verify_code']:
+                profile = Profile.objects.filter(user_id=request.user.id).update(phone=phone)
+                return redirect('shop:login')
+            else:
+                print("4")
+                messages.error(request, 'کد وارد شده اشتباه است')
+    else:
+        form = CodePhoneForm()
+    context = {
+        'form': form,
+    }
+    return render(request, 'shop/phone/verify-login-phone.html', context)

@@ -81,8 +81,11 @@ class Profile(models.Model):
     user = models.OneToOneField(MyUser, on_delete=models.CASCADE, related_name='profiles')
     first_name = models.CharField(max_length=80)
     last_name = models.CharField(max_length=80)
-    phone = models.CharField(max_length=11)
     image = models.ImageField(upload_to='image/')
+    phone = models.CharField(max_length=11)
+    verify_code = models.CharField(max_length=4)
+
+
 
 
 def save_profile_user(sender, **kwargs):
@@ -92,4 +95,6 @@ def save_profile_user(sender, **kwargs):
 
 
 post_save.connect(save_profile_user, sender=MyUser)
+
+
 
