@@ -6,4 +6,4 @@ from .models import Post
 def post_Views(request):
     post = Post.objects.filter(status='p').order_by('-publish')
     context = {'posts':post}
-    return render(request , 'administrator/index/index.html' , context)
+    return render(request , 'shop/Home/home.html' , context)
