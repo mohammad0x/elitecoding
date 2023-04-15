@@ -5,6 +5,12 @@
     <title>Title</title>
 </head>
 <body>
-<h1>Home page</h1>
+{% for post in posts %}
+    <p>{{ post.title }}</p>
+    <p>{{ post.slug }}</p>
+    <p>{{ post.desc }}</p>
+    <p><img src="{{ post.image.url }}" alt=""></p>
+    <p></p>
+{% endfor %}
 </body>
 </html>
