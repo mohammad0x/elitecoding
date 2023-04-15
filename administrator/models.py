@@ -29,6 +29,8 @@ class Post(models.Model):
     publish = models.DateTimeField(default=timezone.now)
     status = models.CharField(max_length=1, choices=STATUS_CHOICES)
 
+    def __str__(self):
+        return self.title
 
 class category_Course(models.Model):
     title = models.CharField(max_length=100)
