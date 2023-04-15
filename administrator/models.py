@@ -32,6 +32,7 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
+
 class category_Course(models.Model):
     title = models.CharField(max_length=100)
     status = models.BooleanField(default=True)
@@ -45,17 +46,22 @@ class category_Course(models.Model):
 
 
 class Course(models.Model):
-    admin = models.ForeignKey(MyUser, on_delete=models.CASCADE ,related_name="adminUser")
-    user = models.ForeignKey(MyUser, on_delete=models.CASCADE , related_name="myUser")
+    admin = models.ForeignKey(MyUser, on_delete=models.CASCADE, related_name="adminUser")
     category = models.ManyToManyField(category_Course, related_name="course")
     title = models.CharField(max_length=50)
     description = models.TextField()
     image = models.ImageField(upload_to='course/')
-    price = models.IntegerField( null=False, blank=False)
+    price = models.IntegerField(null=False, blank=False)
     publish = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.title
 
 
 class Video(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     video = models.FileField(upload_to='video/')
+
+    def __str__(self):
+        return self.title
