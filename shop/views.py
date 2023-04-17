@@ -13,21 +13,19 @@ import random
 
 # Create your views here.
 
-@login_required(login_url='/login/')
-def Home(request):
-    return render(request, 'shop/Home/home.html')
+
 
 
 def Login(request):
     if request.user.is_authenticated:
-        return redirect('shop:home')
+        return redirect('administrator:home')
     if request.method == 'POST':
         username = request.POST.get('email')
         password = request.POST.get('password')
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('shop:home')
+            return redirect('administrator:home')
         else:
             context = {
                 "username": username,
@@ -79,7 +77,7 @@ def ProfileUpdate(request):
             profile_form.save()
             user_form.save()
             messages.success(request, 'Update Successfully', 'success')
-            return redirect('shop:home')
+            return redirect('administrator:home')
 
     else:
         user_form = UserUpdateForm(instance=request.user)
