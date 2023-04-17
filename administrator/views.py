@@ -14,4 +14,4 @@ def course_View(request):
     context = {
         'course':course
     }
-    return render (request , '' , context)
+    return render (request , 'administrator/course/course.html' , context)
