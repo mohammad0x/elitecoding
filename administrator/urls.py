@@ -4,5 +4,6 @@ app_name='administrator'
 urlpatterns = [
     path('home/', Home, name="home"),
     path('detail/<slug:slug>/', detail_Post, name="detail_Post"),
+    path('video_Course/<int:id>/', video_Course, name="video_Course"),
     path('course/' , course_View , name= 'course'),
 ]

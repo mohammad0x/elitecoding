@@ -9,11 +9,11 @@ def Home(request):
 
 
 def detail_Post(request, slug):
-    detail = get_object_or_404(Post, slug=slug , status='p')
+    detail = get_object_or_404(Post, slug=slug, status='p')
     context = {
-        'detail':detail
+        'detail': detail
     }
-    return render(request , 'administrator/Home/detail.html' , context)
+    return render(request, 'administrator/Home/detail.html', context)
 
 
 def course_View(request):
@@ -22,3 +22,11 @@ def course_View(request):
         'course': course
     }
     return render(request, 'administrator/course/course.html', context)
+
+
+def video_Course(request,id):
+    video = Video.objects.filter(course_id=id)
+    context = {
+        'video':video
+    }
+    return render(request,'administrator/video/video.html',context)

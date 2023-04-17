@@ -10,7 +10,7 @@
 <body>
 {% for courses in course %}
     <p>
-        {{ courses.title }}
+        <a href="{% url 'administrator:video_Course' courses.id %}">{{ courses.title }}</a>
     </p>
     <p>
         {{ courses.description }}
