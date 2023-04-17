@@ -10,8 +10,9 @@
     <p>{{ post.slug }}</p>
     <p>{{ post.desc }}</p>
     <p><img src="{{ post.image.url }}" alt=""></p>
-{#    {% for cate in posts.c %}#}
-    <p></p>
+    {% for cate in post.category.all %}
+        <p>{{ cate.title }}</p>
+    {% endfor %}
 {% endfor %}
 </body>
 </html>
