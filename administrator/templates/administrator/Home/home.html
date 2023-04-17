@@ -6,13 +6,12 @@
 </head>
 <body>
 {% for post in posts %}
-    <p>{{ post.title }}</p>
-    <p>{{ post.slug }}</p>
-    <p>{{ post.desc }}</p>
-    <p><img src="{{ post.image.url }}" alt=""></p>
-    {% for cate in post.category.all %}
-        <p>{{ cate.title }}</p>
-    {% endfor %}
+    <a href="{% url 'administrator:detail_Post' post.slug %}">{{ post.title }}</a>
 {% endfor %}
+<p>
+<h2>Course is a :</h2>
+<a href="{% url 'administrator:course' %}">Course</a>
+</p>
+
 </body>
 </html>
