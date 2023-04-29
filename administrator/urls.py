@@ -6,4 +6,5 @@ urlpatterns = [
     path('detail/<slug:slug>/', detail_Post, name="detail_Post"),
     path('video_Course/<int:id>/', video_Course, name="video_Course"),
     path('course/' , course_View , name= 'course'),
+    path('cart/<int:id>' , cart , name= 'cart'),
 ]

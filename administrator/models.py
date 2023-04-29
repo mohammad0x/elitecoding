@@ -65,3 +65,8 @@ class Video(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Cart(models.Model):
+    user = models.ForeignKey(MyUser, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)

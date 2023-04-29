@@ -1,5 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from .models import *
+from django.http import HttpResponse
+from shop.models import MyUser
 
 
 def Home(request):
@@ -24,9 +26,18 @@ def course_View(request):
     return render(request, 'administrator/course/course.html', context)
 
 
-def video_Course(request,id):
+def video_Course(request, id):
     video = Video.objects.filter(course_id=id)
     context = {
-        'video':video
+        'video': video
     }
-    return render(request,'administrator/video/video.html',context)
+    return render(request, 'administrator/video/video.html', context)
+
+
+def cart(request , id):
+    user = request.user.id
+    course = id
+    carts = Cart.objects.create(user_id=user , course_id=course)
+    carts.save()
+    return HttpResponse("ok")
+

@@ -15,6 +15,10 @@
         <p>
             <h1>Next:</h1>
         </p>
+        <form action="" >
+            {% csrf_token %}
+            <a href="{% url 'administrator:cart' video.course.id %}">buy</a>
+        </form>
     {% endfor %}
 
 </body>
