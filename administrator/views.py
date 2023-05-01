@@ -51,3 +51,4 @@ def myCourse(request,id):
 
     return render(request, 'administrator/course/myCourse.html')
 
+
