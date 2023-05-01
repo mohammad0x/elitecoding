@@ -34,10 +34,18 @@ def video_Course(request, id):
     return render(request, 'administrator/video/video.html', context)
 
 
-def cart(request , id):
+def cart(request, id):
     user = request.user.id
-    course = id
-    carts = Cart.objects.create(user_id=user , course_id=course)
+    video = id
+    carts = Cart.objects.create(user_id=user, video_id=video)
     carts.save()
     return HttpResponse("ok")
 
+
+def myCourse(request):
+    cart = Cart.objects.filter(user_id=request.user.id)
+    for carts in cart:
+        course = Course.objects.filter(id=carts.course)
+        print(course)
+        context = {'course':course}
+        return render(request , 'administrator/course/myCourse.html' , context)

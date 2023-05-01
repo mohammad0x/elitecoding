@@ -69,4 +69,7 @@ class Video(models.Model):
 
 class Cart(models.Model):
     user = models.ForeignKey(MyUser, on_delete=models.CASCADE)
-    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    video = models.ForeignKey(Video, on_delete=models.CASCADE)
+
+    def __int__(self):
+        return self.video
