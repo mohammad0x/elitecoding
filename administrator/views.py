@@ -47,5 +47,6 @@ def myCourse(request):
     for carts in cart:
         course = Course.objects.filter(id=carts.course)
         print(course)
-        context = {'course':course}
-        return render(request , 'administrator/course/myCourse.html' , context)
+        context = {'course': course}
+        return render(request, 'administrator/course/myCourse.html', context)
+
