@@ -42,11 +42,12 @@ def cart(request, id):
     return HttpResponse("ok")
 
 
-def myCourse(request):
-    cart = Cart.objects.filter(user_id=request.user.id)
+def myCourse(request,id):
+    cart = Cart.objects.filter(user_id=id)
     for carts in cart:
-        course = Course.objects.filter(id=carts.course)
-        print(course)
-        context = {'course': course}
-        return render(request, 'administrator/course/myCourse.html', context)
+        video = Video.objects.filter(id = carts.video_id)
+        context = {'video':video}
+        return render(request, 'administrator/course/myCourse.html',context)
+
+    return render(request, 'administrator/course/myCourse.html')
 

@@ -7,5 +7,5 @@ urlpatterns = [
     path('video_Course/<int:id>/', video_Course, name="video_Course"),
     path('course/' , course_View , name= 'course'),
     path('cart/<int:id>' , cart , name= 'cart'),
-    path('myCourse' , myCourse , name= 'myCourse'),
+    path('myCourse/<int:id>/' , myCourse , name= 'myCourse'),
 ]

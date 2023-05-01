@@ -12,6 +12,8 @@
 <h2>Course is a :</h2>
 <a href="{% url 'administrator:course' %}">Course</a>
 </p>
-
+<p>
+    <a href="{% url 'administrator:myCourse' request.user.id %}">My Course </a>
+</p>
 </body>
 </html>
