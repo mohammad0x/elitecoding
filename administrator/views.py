@@ -37,9 +37,12 @@ def video_Course(request, id):
 def cart(request, id):
     user = request.user.id
     video = id
-    carts = Cart.objects.create(user_id=user, video_id=video)
-    carts.save()
-    return HttpResponse("ok")
+    if Cart.objects.filter(user_id=user, video_id=video).exists():
+        return HttpResponse('از قبل خریداری شده است!')
+    else:
+        carts = Cart.objects.create(user_id=user, video_id=video)
+        carts.save()
+        return HttpResponse("ok")
 
 
 def myCourse(request,id):
