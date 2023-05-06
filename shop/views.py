@@ -38,7 +38,7 @@ def Login(request):
 
 def Register(request):
     if request.user.is_authenticated:
-        return redirect('blog:profile')
+        return redirect('shop:profile_view')
     if request.method == 'POST':
         form = UserCreateForm(request.POST)
         if form.is_valid():

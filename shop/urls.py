@@ -3,6 +3,7 @@ from .views import *
 from django.contrib.auth import views as auth_views
 
 app_name = 'shop'
+
 urlpatterns = [
     path('login/' , Login , name="login"),
     path('register/' , Register , name="register"),
