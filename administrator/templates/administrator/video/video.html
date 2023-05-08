@@ -17,7 +17,7 @@
         </p>
         <form action="" >
             {% csrf_token %}
-            <a href="{% url 'administrator:cart' video.course.id %}">buy</a>
+            <a href="{% url 'administrator:cart' video.id %}">buy</a>
         </form>
     {% endfor %}
 
