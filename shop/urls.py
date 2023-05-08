@@ -10,6 +10,7 @@ urlpatterns = [
     path('profile/' , ProfileUpdate , name="profileUpdate"),
     path('profileView/' , profile_view , name="profile_view"),
     path('logout/' , Logout_view , name="logout"),
+    path('delete_user/<str:email>/' , delete_user , name="delete_user"),
     path('login_phone/' , login_phone , name="login_phone"),
     path('verify_login_phone/' , verify_login_phone , name="verify_login_phone"),
     # Forget password

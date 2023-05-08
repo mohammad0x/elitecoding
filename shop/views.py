@@ -69,6 +69,20 @@ def profile_view(request):
 
 
 @login_required(login_url='/login/')
+def delete_user(request, email):
+    if request.method == 'POST':
+        try:
+            user = MyUser.objects.get(email = email)
+            user.delete()
+        except Exception as e:
+            print(e)
+    else:
+        messages.error(request, 'اکانت شما حذف شد')
+    return render(request, 'shop/profile/delete.html')
+
+
+
+@login_required(login_url='/login/')
 def ProfileUpdate(request):
     if request.method == 'POST':
         user_form = UserUpdateForm(request.POST, instance=request.user)
